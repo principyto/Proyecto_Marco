@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2114ff0ab32fca74694295ceadad6526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 100
 --- !u!1 &251242677 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ecc815cb87cb7734389c537531d5a0b1, type: 3}
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -588,7 +588,6 @@ MonoBehaviour:
   defaultMaterial: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   pistol: 1
   machinegun: 0
-  bulletsPerShot: 7
   cam: {fileID: 259218204}
 --- !u!4 &590383928
 Transform:
@@ -1272,7 +1271,7 @@ RectTransform:
   m_GameObject: {fileID: 1713667874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8125, y: 1, z: 1}
+  m_LocalScale: {x: 1.7771001, y: 2.1872, z: 2.1872}
   m_Children:
   - {fileID: 773668575}
   m_Father: {fileID: 579419075}
@@ -1280,7 +1279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 65.7, y: 15}
+  m_AnchoredPosition: {x: 142, y: 32}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1713667876
@@ -1490,7 +1489,7 @@ PrefabInstance:
       objectReference: {fileID: 259218203}
     - target: {fileID: 391490249348544028, guid: b928278b26c34664fa85022f83c12ca5, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 391490249348544029, guid: b928278b26c34664fa85022f83c12ca5, type: 3}
       propertyPath: m_RootOrder
