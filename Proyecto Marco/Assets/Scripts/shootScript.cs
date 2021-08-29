@@ -12,6 +12,17 @@ public class shootScript : MonoBehaviour
     [SerializeField] private Material enemy3Material;
     [SerializeField] private Material defaultMaterial;
 
+
+    [SerializeField] public bool pistol = false;
+    [SerializeField] public bool machinegun = false;
+    //[SerializeField] private bool shotgun = true;
+
+    //public float spread = 2f;
+    float fireRate = 15f;
+    float nextTimeToFire = 0f;
+    //public int bulletsPerShot = 5;
+
+    [SerializeField] Camera cam;
     private Transform _selection;
 
     void Update()
@@ -23,47 +34,147 @@ public class shootScript : MonoBehaviour
             _selection = null;
         }
 
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Input.GetMouseButtonDown(0))
+
+        if(pistol)
         {
-            if (Physics.Raycast(ray, out hit))
+            if(Input.GetMouseButtonDown(0))
             {
-                var selection = hit.transform;
-                if(selection.CompareTag(selectableTag1))
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
                 {
-                    var selectionRender = selection.GetComponent<Renderer>();
-                    if (selectionRender != null)
+                    var selection = hit.transform;
+                    if(selection.CompareTag(selectableTag1))
                     {
-                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                        Health.TakeDamage();
-                        selectionRender.material = enemy1Material;
+                        var selectionRender = selection.GetComponent<Renderer>();
+                        if (selectionRender != null)
+                        {
+                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                            Health.TakeDamage();
+                            selectionRender.material = enemy1Material;
+                        }
+                        _selection = selection;
                     }
-                    _selection = selection;
-                }
-                if (selection.CompareTag(selectableTag2))
-                {
-                    var selectionRender = selection.GetComponent<Renderer>();
-                    if (selectionRender != null)
+                    if (selection.CompareTag(selectableTag2))
                     {
-                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                        Health.TakeDamage();
-                        selectionRender.material = enemy2Material;
+                        var selectionRender = selection.GetComponent<Renderer>();
+                        if (selectionRender != null)
+                        {
+                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                            Health.TakeDamage();
+                            selectionRender.material = enemy2Material;
+                        }
+                        _selection = selection;
                     }
-                    _selection = selection;
-                }
-                if (selection.CompareTag(selectableTag3))
-                {
-                    var selectionRender = selection.GetComponent<Renderer>();
-                    if (selectionRender != null)
+                    if (selection.CompareTag(selectableTag3))
                     {
-                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                        Health.TakeDamage();
-                        selectionRender.material = enemy3Material;
+                        var selectionRender = selection.GetComponent<Renderer>();
+                        if (selectionRender != null)
+                        {
+                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                            Health.TakeDamage();
+                            selectionRender.material = enemy3Material;
+                        }
+                        _selection = selection;
                     }
-                    _selection = selection;
+                    Debug.Log(hit);
+
                 }
             }
         }
+        if (machinegun)
+        {
+            if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
+            {
+                nextTimeToFire = Time.time + 3f / fireRate;
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+                {
+                    var selection = hit.transform;
+                    if (selection.CompareTag(selectableTag1))
+                    {
+                        var selectionRender = selection.GetComponent<Renderer>();
+                        if (selectionRender != null)
+                        {
+                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                            Health.TakeDamage();
+                            selectionRender.material = enemy1Material;
+                        }
+                        _selection = selection;
+                    }
+                    if (selection.CompareTag(selectableTag2))
+                    {
+                        var selectionRender = selection.GetComponent<Renderer>();
+                        if (selectionRender != null)
+                        {
+                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                            Health.TakeDamage();
+                            selectionRender.material = enemy2Material;
+                        }
+                        _selection = selection;
+                    }
+                    if (selection.CompareTag(selectableTag3))
+                    {
+                        var selectionRender = selection.GetComponent<Renderer>();
+                        if (selectionRender != null)
+                        {
+                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                            Health.TakeDamage();
+                            selectionRender.material = enemy3Material;
+                        }
+                        _selection = selection;
+                    }
+                }
+            }
+        }
+        //if (shotgun)
+        //{
+        //    float x = Random.Range(-spread, spread);
+        //    float y = Random.Range(-spread, spread);
+        //    Vector3 direction = cam.transform.forward + new Vector3(x, y, 0);
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        for(int i = 0; i < bulletsPerShot; i++)
+        //        {
+        //            if (Physics.Raycast(cam.transform.position, direction, out hit))
+        //            {
+        //                Debug.DrawRay(cam.transform.position, cam.transform.forward, Color.green);
+
+        //                var selection = hit.transform;
+        //                if (selection.CompareTag(selectableTag1))
+        //                {
+        //                    var selectionRender = selection.GetComponent<Renderer>();
+        //                    if (selectionRender != null)
+        //                    {
+        //                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+        //                        Health.TakeDamage();
+        //                        selectionRender.material = enemy1Material;
+        //                    }
+        //                    _selection = selection;
+        //                }
+        //                if (selection.CompareTag(selectableTag2))
+        //                {
+        //                    var selectionRender = selection.GetComponent<Renderer>();
+        //                    if (selectionRender != null)
+        //                    {
+        //                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+        //                        Health.TakeDamage();
+        //                        selectionRender.material = enemy2Material;
+        //                    }
+        //                    _selection = selection;
+        //                }
+        //                if (selection.CompareTag(selectableTag3))
+        //                {
+        //                    var selectionRender = selection.GetComponent<Renderer>();
+        //                    if (selectionRender != null)
+        //                    {
+        //                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+        //                        Health.TakeDamage();
+        //                        selectionRender.material = enemy3Material;
+        //                    }
+        //                    _selection = selection;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }
