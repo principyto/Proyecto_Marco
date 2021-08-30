@@ -13,9 +13,21 @@ public class moveTowardsScript : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        Follow();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        Follow();
+        
+    }
+
+    void Follow()
+    {
+        target = GameObject.Find("Player");
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
     }
 }
