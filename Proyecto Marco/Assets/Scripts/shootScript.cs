@@ -40,7 +40,7 @@ public class shootScript : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
-                soundManagerScript.PlaySound("Gunshot");
+                soundManagerScript.PlaySound("GunShot");
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
                 {
                     var selection = hit.transform;

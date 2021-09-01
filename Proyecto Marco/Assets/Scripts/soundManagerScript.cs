@@ -10,8 +10,10 @@ public class soundManagerScript : MonoBehaviour
     void Start()
     {
         gunShotSound = Resources.Load<AudioClip>("GunShot");
-
+        if (gunShotSound == null)
+            Debug.Log("Could not load file!");
         audioSRC = GetComponent<AudioSource>();
+        audioSRC.clip = gunShotSound;
     }
 
     // Update is called once per frame
@@ -25,7 +27,7 @@ public class soundManagerScript : MonoBehaviour
         switch(clip)
         {
             case "GunShot":
-                audioSRC.PlayOneShot(gunShotSound);
+                audioSRC.Play();
                 break;
         }
     }
