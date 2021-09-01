@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8608703801108374158, guid: 938fefc9586b4494bb7b94272b1e8fab, type: 3}
-  speed: 30
+  speed: 10
 --- !u!114 &3402586209561595968
 MonoBehaviour:
   m_ObjectHideFlags: 0

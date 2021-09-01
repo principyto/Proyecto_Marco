@@ -18,7 +18,7 @@ public class shootScript : MonoBehaviour
     //[SerializeField] private bool shotgun = true;
 
     //public float spread = 2f;
-    float fireRate = 15f;
+    float fireRate = 30f;
     float nextTimeToFire = 0f;
     //public int bulletsPerShot = 5;
 
@@ -40,6 +40,7 @@ public class shootScript : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
+                soundManagerScript.PlaySound("Gunshot");
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
                 {
                     var selection = hit.transform;
