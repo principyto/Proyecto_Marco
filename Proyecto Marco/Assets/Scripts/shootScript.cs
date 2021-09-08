@@ -18,8 +18,9 @@ public class shootScript : MonoBehaviour
     //[SerializeField] private bool shotgun = true;
 
     //public float spread = 2f;
-    float fireRate = 30f;
-    float nextTimeToFire = 0f;
+    public float fireRate = 30f;
+    public float nextTimeToFire = 0f;
+    public float damage = 2;
     //public int bulletsPerShot = 5;
 
     [SerializeField] Camera cam;
@@ -50,7 +51,7 @@ public class shootScript : MonoBehaviour
                         if (selectionRender != null)
                         {
                             enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage();
+                            Health.TakeDamage(damage);
                             selectionRender.material = enemy1Material;
                         }
                         _selection = selection;
@@ -61,7 +62,7 @@ public class shootScript : MonoBehaviour
                         if (selectionRender != null)
                         {
                             enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage();
+                            Health.TakeDamage(damage);
                             selectionRender.material = enemy2Material;
                         }
                         _selection = selection;
@@ -72,7 +73,7 @@ public class shootScript : MonoBehaviour
                         if (selectionRender != null)
                         {
                             enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage();
+                            Health.TakeDamage(damage);
                             selectionRender.material = enemy3Material;
                         }
                         _selection = selection;
@@ -84,6 +85,7 @@ public class shootScript : MonoBehaviour
         }
         if (machinegun)
         {
+            //aca poner loop de audio source
             if (Input.GetMouseButton(0) && Time.time >= nextTimeToFire)
             {
                 nextTimeToFire = Time.time + 3f / fireRate;
@@ -96,7 +98,7 @@ public class shootScript : MonoBehaviour
                         if (selectionRender != null)
                         {
                             enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage();
+                            Health.TakeDamage(damage);
                             selectionRender.material = enemy1Material;
                         }
                         _selection = selection;
@@ -107,7 +109,7 @@ public class shootScript : MonoBehaviour
                         if (selectionRender != null)
                         {
                             enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage();
+                            Health.TakeDamage(damage);
                             selectionRender.material = enemy2Material;
                         }
                         _selection = selection;
@@ -118,7 +120,7 @@ public class shootScript : MonoBehaviour
                         if (selectionRender != null)
                         {
                             enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage();
+                            Health.TakeDamage(damage);
                             selectionRender.material = enemy3Material;
                         }
                         _selection = selection;

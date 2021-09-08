@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class enemyHealth : MonoBehaviour
 {
-    public float health = 10;
+    public float health;
+    Ragdoll ragdoll;
 
-    public void TakeDamage()
+    void Start()
     {
-        health -= 2;
+        ragdoll = GetComponent<Ragdoll>();
+        health = 10;
+    }
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
         if(health <= 0)
         {
             Die();
@@ -17,7 +23,7 @@ public class enemyHealth : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        ragdoll.ActivateRagdoll();
     }
 
 }

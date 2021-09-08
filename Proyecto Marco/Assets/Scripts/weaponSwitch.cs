@@ -19,7 +19,7 @@ public class weaponSwitch : MonoBehaviour
     }
     private void Awake()
     {
-        change = GameObject.Find("SelectManager");
+        change = GameObject.Find("ShootManager");
 
     }
     // Update is called once per frame
