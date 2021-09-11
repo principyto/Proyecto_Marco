@@ -15,7 +15,7 @@ public class weaponSwitch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SelectWeapon();
+        SelectWeapon();
     }
     private void Awake()
     {
@@ -25,22 +25,8 @@ public class weaponSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(selectedWeapon == 0)
-        {
-            pistola.SetActive(true);
-            m4.SetActive(false);
-            change.GetComponent<shootScript>().pistol = true;
-            change.GetComponent<shootScript>().machinegun = false;
-           
-        }
-        else if(selectedWeapon == 1)
-        {
-            pistola.SetActive(false);
-            m4.SetActive(true);
-            change.GetComponent<shootScript>().pistol = false;
-            change.GetComponent<shootScript>().machinegun = true;
-        }
+
+        SelectWeapon();
 
     }
 
@@ -57,19 +43,21 @@ public class weaponSwitch : MonoBehaviour
 
     void SelectWeapon()
     {
-        
-        //int i = 0;
-        //foreach(Transform weapon in transform)
-        //{
-        //    if(i == selectedWeapon)
-        //    {
-        //        weapon.gameObject.SetActive(true);
-        //    }
-        //    else
-        //    {
-        //        weapon.gameObject.SetActive(false);
-        //    }
-        //    i++;
-        //}
+
+        if (selectedWeapon == 0)
+        {
+            pistola.SetActive(true);
+            m4.SetActive(false);
+            change.GetComponent<shootScript>().pistol = true;
+            change.GetComponent<shootScript>().machinegun = false;
+
+        }
+        else if (selectedWeapon == 1)
+        {
+            pistola.SetActive(false);
+            m4.SetActive(true);
+            change.GetComponent<shootScript>().pistol = false;
+            change.GetComponent<shootScript>().machinegun = true;
+        }
     }
 }

@@ -11,18 +11,12 @@ public class Ragdoll : MonoBehaviour
     {
         rigidBodies = GetComponentsInChildren<Rigidbody>();
         animator = GetComponent<Animator>();
-
         DeactivateRagdoll();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void DeactivateRagdoll()
     {
-        foreach(var rigidBody in rigidBodies)
+        foreach (var rigidBody in rigidBodies)
         {
             rigidBody.isKinematic = true;
         }

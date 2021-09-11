@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Ragdoll test.unity
+    guid: 02723eb72c2158749a183c6cb02dc009
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: fb509f557ae293b46adbab44ed7eddb1, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: a92eb842e248b62488c5a7280b5dd22d, type: 2}

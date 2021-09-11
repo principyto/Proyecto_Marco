@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class moveTowardsScript : MonoBehaviour
 {
-    [SerializeField]
-    GameObject target;
-    [SerializeField] Transform targetRotate;
-    public int speed = 5;
+    public GameObject player;
+    NavMeshAgent agent;
+    //[SerializeField]
+    //GameObject target;
+    //[SerializeField] Transform targetRotate;
+    //public int speed = 5;
     // Start is called before the first frame update
     void Start()
     {
-        
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void Awake()
@@ -22,20 +25,20 @@ public class moveTowardsScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Follow();
-        RotateTowards();
+        agent.destination = player.transform.position;
+        //Follow();
+        //RotateTowards();
     }
 
     void Follow()
     {
-        target = GameObject.Find("Player");
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+        player = GameObject.Find("Player");
     }
 
-    void RotateTowards()
-    {
-        Vector3 direction = targetRotate.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(direction);
-        transform.rotation = rotation;
-    }
+    //void RotateTowards()
+    //{
+    //    Vector3 direction = targetRotate.position - transform.position;
+    //    Quaternion rotation = Quaternion.LookRotation(direction);
+    //    transform.rotation = rotation;
+    //}
 }

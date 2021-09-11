@@ -20,65 +20,66 @@ public class shootScript : MonoBehaviour
     //public float spread = 2f;
     public float fireRate = 30f;
     public float nextTimeToFire = 0f;
-    public float damage = 2;
+    public float damage = 0;
     //public int bulletsPerShot = 5;
 
     [SerializeField] Camera cam;
     private Transform _selection;
 
+    RaycastHit hit;
+
+    private void Awake()
+    {
+
+    }
+
     void Update()
     {
-        if(_selection != null)
+
+        if (_selection != null)
         {
             var selectionRenderer = _selection.GetComponent<Renderer>();
             selectionRenderer.material = defaultMaterial;
             _selection = null;
         }
 
-        RaycastHit hit;
 
         if(pistol)
         {
             if(Input.GetMouseButtonDown(0))
             {
+                LayerMask mask = LayerMask.GetMask("Enemigos_Player");
+
                 soundManagerScript.PlaySound("GunShot");
-                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, mask))
                 {
-                    var selection = hit.transform;
-                    if(selection.CompareTag(selectableTag1))
-                    {
-                        var selectionRender = selection.GetComponent<Renderer>();
-                        if (selectionRender != null)
-                        {
-                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage(damage);
-                            selectionRender.material = enemy1Material;
-                        }
-                        _selection = selection;
-                    }
-                    if (selection.CompareTag(selectableTag2))
-                    {
-                        var selectionRender = selection.GetComponent<Renderer>();
-                        if (selectionRender != null)
-                        {
-                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage(damage);
-                            selectionRender.material = enemy2Material;
-                        }
-                        _selection = selection;
-                    }
-                    if (selection.CompareTag(selectableTag3))
-                    {
-                        var selectionRender = selection.GetComponent<Renderer>();
-                        if (selectionRender != null)
-                        {
-                            enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-                            Health.TakeDamage(damage);
-                            selectionRender.material = enemy3Material;
-                        }
-                        _selection = selection;
-                    }
-                    Debug.Log(hit);
+                    RaycastSegment();
+                    //var selection = hit.transform;S
+                    //Hitboxes hitBox = hit.transform.GetComponent<Hitboxes>();
+                    //hitBox.OnRaycastHit(this);
+                    Debug.Log(hit.collider.name);
+                    //if (selection.CompareTag(selectableTag2))
+                    //{
+                    //    var selectionRender = selection.GetComponent<Renderer>();
+                    //    if (selectionRender != null)
+                    //    {
+                    //        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                    //        Health.TakeDamage(damage);
+                    //        selectionRender.material = enemy2Material;
+                    //    }
+                    //    _selection = selection;
+                    //}
+                    //if (selection.CompareTag(selectableTag3))
+                    //{
+                    //    var selectionRender = selection.GetComponent<Renderer>();
+                    //    if (selectionRender != null)
+                    //    {
+                    //        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
+                    //        Health.TakeDamage(damage);
+                    //        selectionRender.material = enemy3Material;
+                    //    }
+                    //    _selection = selection;
+                    //}
 
                 }
             }
@@ -128,56 +129,15 @@ public class shootScript : MonoBehaviour
                 }
             }
         }
-        //if (shotgun)
-        //{
-        //    float x = Random.Range(-spread, spread);
-        //    float y = Random.Range(-spread, spread);
-        //    Vector3 direction = cam.transform.forward + new Vector3(x, y, 0);
-        //    if (Input.GetMouseButtonDown(0))
-        //    {
-        //        for(int i = 0; i < bulletsPerShot; i++)
-        //        {
-        //            if (Physics.Raycast(cam.transform.position, direction, out hit))
-        //            {
-        //                Debug.DrawRay(cam.transform.position, cam.transform.forward, Color.green);
+       
+    }
 
-        //                var selection = hit.transform;
-        //                if (selection.CompareTag(selectableTag1))
-        //                {
-        //                    var selectionRender = selection.GetComponent<Renderer>();
-        //                    if (selectionRender != null)
-        //                    {
-        //                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-        //                        Health.TakeDamage();
-        //                        selectionRender.material = enemy1Material;
-        //                    }
-        //                    _selection = selection;
-        //                }
-        //                if (selection.CompareTag(selectableTag2))
-        //                {
-        //                    var selectionRender = selection.GetComponent<Renderer>();
-        //                    if (selectionRender != null)
-        //                    {
-        //                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-        //                        Health.TakeDamage();
-        //                        selectionRender.material = enemy2Material;
-        //                    }
-        //                    _selection = selection;
-        //                }
-        //                if (selection.CompareTag(selectableTag3))
-        //                {
-        //                    var selectionRender = selection.GetComponent<Renderer>();
-        //                    if (selectionRender != null)
-        //                    {
-        //                        enemyHealth Health = hit.transform.GetComponent<enemyHealth>();
-        //                        Health.TakeDamage();
-        //                        selectionRender.material = enemy3Material;
-        //                    }
-        //                    _selection = selection;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+    void RaycastSegment()
+    {
+        var hitbox = hit.collider.GetComponent<Hitboxes>();
+        if(hitbox)
+        {
+            hitbox.OnRaycastHit(this);
+        }
     }
 }
